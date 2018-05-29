@@ -39,5 +39,7 @@ dist
 # Mac files
 .DS_Store
 
-#firebaseConfig
+#firebase
 firebaseConfig.js
+.firebaserc
+firebase.json
