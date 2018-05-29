@@ -1,0 +1,10 @@
+//User
+export const LOGIN_BEGIN = 'LOGIN_BEGIN'
+export const LOGIN_COMPLETE = 'LOGIN_COMPLETE'
+export const LOGIN_ERROR = 'LOGIN_ERROR'
+export const LOGOUT = 'LOGOUT'
+//Tags
+export const TOGGLE_TAG = 'TOGGLE_TAG'
+export const SELECT_ALL_TAGS = 'SELECT_ALL_TAGS'
+export const RANDOMIZE_TAGS = 'RANDOMIZE_TAGS'
+export const RANDOM_COUNTER_CHANGE = 'RANDOM_COUNTER_CHANGE'
