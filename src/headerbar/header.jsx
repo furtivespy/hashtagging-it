@@ -15,7 +15,7 @@ class Header extends React.Component {
                     <span className="pt-navbar-divider"></span>
                     <Link to="/login"><button className="pt-button pt-minimal pt-icon-user"></button></Link>
                     <button className="pt-button pt-minimal pt-icon-help"></button>
-                    <Link to="/about"><button className="pt-button pt-minimal pt-icon-cog"></button></Link>
+                    <Link to="/admin"><button className="pt-button pt-minimal pt-icon-cog"></button></Link>
                 </div>
             </nav>
         )

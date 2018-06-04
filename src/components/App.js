@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import AboutPage from "../aboutPage/AboutPage";
+import AdminPage from "../adminPage/adminPage";
 import HomePage from "../homePage/homePage";
 import NotFoundPage from "./NotFoundPage";
 import Header from '../headerbar/header';
@@ -21,10 +21,10 @@ class App extends React.Component {
     return (
       <div>
       <Header />
-      <Wrapper>  
+      <Wrapper>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/about" component={AboutPage} />
+          <Route path="/admin" component={AdminPage} />
           <Route path='/login' component={Login} />
           <Route component={NotFoundPage} />
         </Switch>
