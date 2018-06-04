@@ -1,6 +1,48 @@
 export default {
   randomList : "",
   randomCount: 30,
+  categorizedTags: [
+    {
+      categoryName: "Sewing",
+      tags: [
+        {
+          "media_count": 1,
+          "name": "sewistofinstagram",
+          "selected": false
+        },
+        {
+          "media_count": 1,
+          "name": "isew",
+          "selected": false
+        }
+      ]
+    },
+    {
+      categoryName: "Bags",
+      tags: [
+        {
+          "media_count": 3264,
+          "name": "bags",
+          "selected": false
+        },
+        {
+          "media_count": 1,
+          "name": "handmadebags",
+          "selected": false
+        },
+        {
+          "media_count": 1,
+          "name": "handmadehandbag",
+          "selected": false
+        },
+        {
+          "media_count": 1,
+          "name": "shoulderbag",
+          "selected": false
+        }
+      ]
+    }
+  ],
   tags: [
     {
       "media_count": 43590,
