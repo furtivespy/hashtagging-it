@@ -1,23 +1,23 @@
 import React from 'react'
-import {nav, button} from '@blueprintjs/core'
+import {Navbar, NavbarGroup, NavbarDivider, NavbarHeading, Button, Alignment} from '@blueprintjs/core'
 import {Link} from 'react-router-dom'
 
 class Header extends React.Component {
     render () {
         return (
-            <nav className="pt-navbar .modifer">
-                <div className="pt-navbar-group pt-align-left">
-                    <div className="pt-navbar-heading">Hashtagging It</div>
+            <Navbar>
+                <NavbarGroup align={Alignment.LEFT}>
+                    <NavbarHeading>Hashtagging It</NavbarHeading>
                     <input className="pt-input" placeholder="Searh does nothing..." type="text" />
-                </div>
-                <div className="pt-navbar-group pt-align-right">
-                    <Link to="/"><button className="pt-button pt-minimal pt-icon-home">Home</button></Link>
-                    <span className="pt-navbar-divider"></span>
-                    <Link to="/login"><button className="pt-button pt-minimal pt-icon-user"></button></Link>
-                    <button className="pt-button pt-minimal pt-icon-help"></button>
-                    <Link to="/admin"><button className="pt-button pt-minimal pt-icon-cog"></button></Link>
-                </div>
-            </nav>
+                </NavbarGroup>
+                <NavbarGroup align={Alignment.RIGHT}>
+                    <Link to="/"><Button minimal={true} icon="home">Home</Button></Link>
+                    <NavbarDivider />
+                    <Link to="/login"><Button minimal={true} icon="user"></Button></Link>
+                    <Button minimal={true} icon="help"></Button>
+                    <Link to="/admin"><Button minimal={true} icon="cog"></Button></Link>
+                </NavbarGroup>
+            </Navbar>
         )
     }
 }
