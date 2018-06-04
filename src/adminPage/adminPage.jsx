@@ -1,29 +1,38 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import CategoryColumn from './categoryColumn'
+import TagsColumn from './tagsColumn'
+import {sortBy} from 'lodash'
 
 const MainContainer = styled.div`
   display: flex;
 `
 
-const ColumnTwo = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 4;
-`
-
-const AdminPage = () => {
-  return (
-    <div className="">
-      <h2>Categorize Tags</h2>
-      <MainContainer>
-        <CategoryColumn categories={["Stuff","Things"]} selected="Things" />
-        <ColumnTwo>
-          <div>Tags</div>
-        </ColumnTwo>
-      </MainContainer>
-    </div>
-  )
+class AdminPage extends React.Component {
+  render() {
+    return (
+      <div className="">
+        <h2>Categorize Tags</h2>
+        <MainContainer>
+          <CategoryColumn categories={this.props.categories} selected="Things" />
+          <TagsColumn/>
+        </MainContainer>
+      </div>
+    )
+  }
 }
 
-export default AdminPage
+AdminPage.propTypes = {
+  categories: PropTypes.array
+}
+
+const mapStateToProps = (state) => {
+  return {
+      tags: sortBy(state.tags.tags, ["name"]),
+      categories: sortBy(state.tags.categorizedTags, ["categoryName"]).map((c) => c.categoryName)
+  };
+}
+
+export default connect(mapStateToProps)(AdminPage)
