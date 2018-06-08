@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes'
+import * as types from '../actions/actionTypes'
 import initialState from './initialState';
 import { findIndex, filter, shuffle, take, join } from 'lodash'
 
@@ -31,6 +31,8 @@ export default function tagsReducer(state = initialState, action) {
       }
     case types.RANDOM_COUNTER_CHANGE:
       return Object.assign({}, state, {randomCount: action.count})
+    case types.SELECT_TAG_CATEGORY:
+      return Object.assign({}, state, {selectedCategory: action.newCategory})
     default:
       return state
   }

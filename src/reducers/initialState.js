@@ -1,6 +1,7 @@
 export default {
   randomList : "",
   randomCount: 30,
+  selectedCategory: "",
   categorizedTags: [
     {
       categoryName: "Sewing",

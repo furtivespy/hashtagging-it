@@ -15,10 +15,11 @@ const FlexDiv = styled.div`
 
 class TagList extends React.Component {
     render() {
+        const {tags, click, canSelect, canRemove} = this.props
         return (
             <FlexDiv>
-                {this.props.tags.map((tag) => {
-                    return(<TagHolder key={tag.name}><Tag interactive={true} intent={tag.selected ? 'Success' : 'None'} onClick={() => this.props.click(tag.name)} >{tag.name}</Tag></TagHolder>)
+                {tags.map((tag) => {
+                    return(<TagHolder key={tag.name}><Tag interactive={canSelect} onRemove={canRemove ? () => {} : undefined } intent={tag.selected ? 'Success' : 'None'} onClick={() => click(tag.name)} >{tag.name}</Tag></TagHolder>)
                 })}
             </FlexDiv>
         );
@@ -27,7 +28,15 @@ class TagList extends React.Component {
 
 TagList.propTypes = {
     tags: PropTypes.array.isRequired,
-    click: PropTypes.func
+    click: PropTypes.func,
+    canSelect: PropTypes.bool,
+    canRemove: PropTypes.bool
+}
+
+TagList.defaultProps = {
+    click: () => {},
+    canSelect: true,
+    canRemove: false
 }
 
 export default TagList;

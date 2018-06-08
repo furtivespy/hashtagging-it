@@ -2,11 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {Tag} from '@blueprintjs/core'
+import AddItem from './addItem'
 
 const Column = styled.div`
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    width: 200px;
+    border-right-style:solid;
+    margin-right: 15px;
 `
 
 const PaddedDiv = styled.div`
@@ -16,15 +19,21 @@ const PaddedDiv = styled.div`
 const CategoryColumn = (props) => {
     return (
         <Column>
-        <div>List of Categories</div>
-        {props.categories.map((cat) => { return(<PaddedDiv key={cat}><Tag large={true} interactive={true} intent={(cat === props.selected) ? "Success" : "None"}>{cat}</Tag></PaddedDiv>)})}
+        <h4>Categories</h4>
+        {props.categories.map((cat) => { return(<PaddedDiv key={cat}><Tag large={true} interactive={true} onClick={props.onSelect.bind(this, cat)} intent={(cat === props.selected) ? "Success" : "None"}>{cat}</Tag></PaddedDiv>)})}
+        <AddItem />
         </Column>
     )
 }
 
+CategoryColumn.defaultProps = {
+    onSelect: () => {}
+}
+
 CategoryColumn.propTypes = {
     categories: PropTypes.array.isRequired,
-    selected: PropTypes.string
+    selected: PropTypes.string,
+    onSelect: PropTypes.func
 }
 
 export default CategoryColumn

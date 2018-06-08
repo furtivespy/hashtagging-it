@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes';
+import * as types from './actionTypes';
 import Firebase from 'firebase'
 
 export function logoutClick() {

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import TagList from '../tagList/tagList'
 
@@ -12,24 +13,19 @@ const PaddedDiv = styled.div`
     padding: 2px;
 `
 
-const TagsColumn = () => {
+const TagsColumn = (props) => {
     return (
         <Column>
-        <div>Tags</div>
+        <h4>Tags</h4>
         <PaddedDiv>
-            <TagList tags={[{
-                "media_count": 1,
-                "name": "whatimade",
-                "selected": false
-                },
-                {
-                "media_count": 1,
-                "name": "handmadeisbetter",
-                "selected": false
-                }]}/>
+            <TagList tags={props.tags} canSelect={false} canRemove={true}/>
         </PaddedDiv>
         </Column>
     )
+}
+
+TagsColumn.propTypes = {
+    tags: PropTypes.array
 }
 
 

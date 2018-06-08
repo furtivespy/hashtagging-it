@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes'
+import * as types from './actionTypes'
 
 export function ToggleTag(tag) {
     return {
@@ -31,5 +31,12 @@ export function RandomCountChange(num) {
     return {
         type: types.RANDOM_COUNTER_CHANGE,
         count: num
+    }
+}
+
+export function SelectCategory(category){
+    return{
+        type: types.SELECT_TAG_CATEGORY,
+        newCategory: category
     }
 }
