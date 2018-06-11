@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import TagList from '../tagList/tagList'
+import AddItem from './addItem'
 
 const Column = styled.div`
     display: flex;
@@ -20,12 +21,18 @@ const TagsColumn = (props) => {
         <PaddedDiv>
             <TagList tags={props.tags} canSelect={false} canRemove={true}/>
         </PaddedDiv>
+        <AddItem form="addTags" placeholder="Add New Tag" onSubmit={props.onAdd}/>
         </Column>
     )
 }
 
+TagsColumn.defaultProps = {
+    onAdd: () => {}
+}
+
 TagsColumn.propTypes = {
-    tags: PropTypes.array
+    tags: PropTypes.array,
+    onAdd: PropTypes.func
 }
 
 

@@ -21,19 +21,21 @@ const CategoryColumn = (props) => {
         <Column>
         <h4>Categories</h4>
         {props.categories.map((cat) => { return(<PaddedDiv key={cat}><Tag large={true} interactive={true} onClick={props.onSelect.bind(this, cat)} intent={(cat === props.selected) ? "Success" : "None"}>{cat}</Tag></PaddedDiv>)})}
-        <AddItem />
+        <AddItem form="addCategory" placeholder="Add Category" onSubmit={props.onAdd}/>
         </Column>
     )
 }
 
 CategoryColumn.defaultProps = {
-    onSelect: () => {}
+    onSelect: () => {},
+    onAdd: () => {}
 }
 
 CategoryColumn.propTypes = {
     categories: PropTypes.array.isRequired,
     selected: PropTypes.string,
-    onSelect: PropTypes.func
+    onSelect: PropTypes.func,
+    onAdd: PropTypes.func
 }
 
 export default CategoryColumn

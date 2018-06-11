@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import {sortBy, find} from 'lodash'
 import CategoryColumn from './categoryColumn'
 import TagsColumn from './tagsColumn'
-import {SelectCategory} from '../actions/tagActions.js'
+import {SelectCategory, AddCategory, AddCategoryTag} from '../actions/tagActions.js'
 
 
 const MainContainer = styled.div`
@@ -18,8 +18,8 @@ class AdminPage extends React.Component {
       <div className="">
         <h2>Categorize Tags</h2>
         <MainContainer>
-          <CategoryColumn categories={this.props.categories} selected={this.props.selectedCat} onSelect={this.props.catClick} />
-          <TagsColumn tags={this.props.tags}/>
+          <CategoryColumn categories={this.props.categories} selected={this.props.selectedCat} onSelect={this.props.catClick} onAdd={this.props.addCategory} />
+          <TagsColumn tags={this.props.tags} selected={this.props.selectedCat} onAdd={this.props.addTag} />
         </MainContainer>
       </div>
     )
@@ -30,7 +30,9 @@ AdminPage.propTypes = {
   categories: PropTypes.array,
   tags: PropTypes.array,
   selectedCat: PropTypes.string,
-  catClick: PropTypes.func
+  catClick: PropTypes.func,
+  addCategory: PropTypes.func,
+  addTag: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -44,7 +46,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      catClick: (cat) => dispatch(SelectCategory(cat))
+      catClick: (cat) => dispatch(SelectCategory(cat)),
+      addCategory: (data) => dispatch(AddCategory(data)),
+      addTag: (data) => dispatch(AddCategoryTag(data))
   }
 }
 

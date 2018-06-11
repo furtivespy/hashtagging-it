@@ -33,6 +33,8 @@ export default function tagsReducer(state = initialState, action) {
       return Object.assign({}, state, {randomCount: action.count})
     case types.SELECT_TAG_CATEGORY:
       return Object.assign({}, state, {selectedCategory: action.newCategory})
+    case types.TAGS_ADD_CATEGORY:
+      return Object.assign({}, state, {categorizedTags: [...state.categorizedTags, {categoryName: action.newCategory, tags: []}]})
     default:
       return state
   }
