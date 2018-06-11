@@ -35,6 +35,16 @@ export default function tagsReducer(state = initialState, action) {
       return Object.assign({}, state, {selectedCategory: action.newCategory})
     case types.TAGS_ADD_CATEGORY:
       return Object.assign({}, state, {categorizedTags: [...state.categorizedTags, {categoryName: action.newCategory, tags: []}]})
+    case types.TAGS_ADD_CATEGORY_TAG:
+      var index = findIndex(state.categorizedTags, ["categoryName",state.selectedCategory])
+      if (index === -1) { return state }
+      return Object.assign({}, state, {
+        categorizedTags: [
+          ...state.categorizedTags.slice(0,index),
+          Object.assign({}, state.categorizedTags[index], {tags: [...state.categorizedTags[index].tags, {media_count: 1, name: action.newTag, selected: false}]}),
+          ...state.categorizedTags.slice(index+1)
+        ]
+      })
     default:
       return state
   }

@@ -59,7 +59,9 @@ export function AddCategory(formData){
 
 export function AddCategoryTag(tagForm){
     return function (dispatch, getState) {
-        var existing = find(getState().tags.categorizedTags,["categoryName", getState().tags.selectedCategory]).tags
+        var selectedCategory = getState().tags.selectedCategory
+        if (selectedCategory === undefined || selectedCategory.trim().length < 1) return
+        var existing = find(getState().tags.categorizedTags,["categoryName", selectedCategory]).tags
         var ind = findIndex(existing, ["categoryName", tagForm.itemInput])
         if (ind === -1 && tagForm.itemInput && tagForm.itemInput.trim().length > 0){
             dispatch({
