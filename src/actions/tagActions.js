@@ -72,3 +72,10 @@ export function AddCategoryTag(tagForm){
         }
     }
 }
+
+export function RemoveCategoryTag(tag){
+    return{
+        type: types.TAGS_REMOVE_CATEGORY_TAG,
+        tag: tag
+    }
+}

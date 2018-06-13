@@ -19,7 +19,7 @@ const TagsColumn = (props) => {
         <Column>
         <h4>Tags</h4>
         <PaddedDiv>
-            <TagList tags={props.tags} canSelect={false} canRemove={true}/>
+            <TagList tags={props.tags} canSelect={false} canRemove={true} onRemove={props.onRemove}/>
         </PaddedDiv>
         <AddItem form="addTags" placeholder="Add New Tag" onSubmit={props.onAdd}/>
         </Column>
@@ -27,12 +27,14 @@ const TagsColumn = (props) => {
 }
 
 TagsColumn.defaultProps = {
-    onAdd: () => {}
+    onAdd: () => {},
+    onRemove: () => {}
 }
 
 TagsColumn.propTypes = {
     tags: PropTypes.array,
-    onAdd: PropTypes.func
+    onAdd: PropTypes.func,
+    onRemove: PropTypes.func
 }
 
 

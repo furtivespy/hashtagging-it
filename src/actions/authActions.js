@@ -23,7 +23,7 @@ export function loginClick(provider) {
 			break
 		}
 
-		Firebase.auth().signInWithPopup(authProvider).then( results =>
+		Firebase.auth().signInWithPopup(authProvider).then( results => 
 			dispatch({ 
 				type: types.LOGIN_COMPLETE,
 				user: results.user
