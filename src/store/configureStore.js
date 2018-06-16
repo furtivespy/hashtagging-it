@@ -5,7 +5,19 @@ import createHistory from 'history/createBrowserHistory';
 import { createLogger } from 'redux-logger';
 // 'routerMiddleware': the new way of storing route changes with redux middleware since rrV4.
 import { routerMiddleware } from 'react-router-redux';
+import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import firebase from 'firebase';
+import firebaseConfig from '../config/firebaseConfig'
 import rootReducer from '../reducers';
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+// react-redux-firebase options
+const config = {
+  userProfile: 'users', // firebase root where user profiles are stored
+  enableLogging: false, // enable/disable Firebase's database logging
+}
+
 export const history = createHistory();
 
 const logger = createLogger({});
@@ -17,7 +29,7 @@ function configureStoreProd(initialState) {
 
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/reduxjs/redux-thunk#injecting-a-custom-argument
-    thunk,
+    thunk.withExtraArgument(getFirebase),
     reactRouterMiddleware,
   ];
 
@@ -36,14 +48,15 @@ function configureStoreDev(initialState) {
     reduxImmutableStateInvariant(),
     // thunk middleware can also accept an extra argument to be passed to each thunk action
     // https://github.com/reduxjs/redux-thunk#injecting-a-custom-argument
-    thunk,
+    thunk.withExtraArgument(getFirebase),
     reactRouterMiddleware,
     //logger must be last
     logger,
   ];
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools  
   const store = createStore(rootReducer, initialState, composeEnhancers(
+    reactReduxFirebase(firebase, config), // Add redux Firebase to compose
     applyMiddleware(...middlewares)
     )
   );

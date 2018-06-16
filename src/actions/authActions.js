@@ -1,13 +1,22 @@
-import * as types from './actionTypes';
-import Firebase from 'firebase'
+//import * as types from './actionTypes';
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 
 export function logoutClick() {
-	return {
-		type: types.LOGOUT
+	return (dispatch, getState, getFirebase) => {
+		const firebase = getFirebase()
+		firebase.logout()
 	}
 }
 
 export function loginClick(provider) {
+	return (dispatch, getState, getFirebase) => {
+		const firebase = getFirebase()
+		const state = getState()
+		if (isLoaded(state.firebase.auth) && isEmpty(state.firebase.auth))
+			firebase.login({ provider: provider, type: 'popup'})
+	}
+
+/*
 	return dispatch =>  {
 		dispatch({ type: types.LOGIN_BEGIN })
 		let authProvider
@@ -35,4 +44,5 @@ export function loginClick(provider) {
 			})
 		)
 	}
+	*/
 }

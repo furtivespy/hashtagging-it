@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import firebase from 'firebase';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import App from './App';
-import firebaseConfig from '../config/firebaseConfig'
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 
 
 export default class Root extends Component {

@@ -1,13 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Callout } from "@blueprintjs/core";
-import * as actions from '../actions/authActions';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Callout } from "@blueprintjs/core"
+import { isLoaded, isEmpty } from 'react-redux-firebase'
+import * as actions from '../actions/authActions'
 
 export class Login extends React.Component {
     loginTwitter = () => {
-        this.props.actions.loginClick('TWITTER');
+        this.props.actions.loginClick('Twitter')
+    }
+    logout = () => {
+        this.props.actions.logoutClick()
     }
 
     render() {
@@ -18,22 +22,24 @@ export class Login extends React.Component {
                     Login is ony available with twitter at this time
                 </Callout>
                 <p></p>
+                {!isLoaded(this.props.auth) || isEmpty(this.props.auth) ? 
                 <div><button className="pt-button" onClick={this.loginTwitter}>
                     <img src={require("./sign-in-with-twitter-link.png")} alt="Sign In With Twitter" />
-                </button></div>
-                <div><button className="pt-button">Facebooks</button></div>
-                <div><button className="pt-button">The Googs</button></div>
+                </button></div> :
+                <div><button className="pt-button" onClick={this.logout}>Logout</button></div> }
             </div>
         )
     }
 }
 
 Login.propTypes = {
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    auth: PropTypes.object
   };
 
-function mapStateToProps() {
+function mapStateToProps(state) {
     return {
+        auth: state.firebase.auth
     };
 }
 

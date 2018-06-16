@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import { reducer as reduxFormReducer } from 'redux-form';
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
+import { reducer as reduxFormReducer } from 'redux-form'
+import {firebaseReducer} from 'react-redux-firebase'
 import tags from './tags'
-import user from './login'
 
 const rootReducer = combineReducers({
+  firebase: firebaseReducer,
   tags,
-  user,
   routing: routerReducer,
   form: reduxFormReducer,
 });
