@@ -7,11 +7,14 @@ import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'
 import firebase from 'firebase';
+//import { reduxFirestore } from 'redux-firestore' // <- needed if using firestore
+import 'firebase/firestore' // <- needed if using firestore
 import firebaseConfig from '../config/firebaseConfig'
 import rootReducer from '../reducers';
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+firebase.firestore();
 // react-redux-firebase options
 const config = {
   userProfile: 'users', // firebase root where user profiles are stored
@@ -57,6 +60,7 @@ function configureStoreDev(initialState) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools  
   const store = createStore(rootReducer, initialState, composeEnhancers(
     reactReduxFirebase(firebase, config), // Add redux Firebase to compose
+ //   reduxFirestore(firebase),
     applyMiddleware(...middlewares)
     )
   );

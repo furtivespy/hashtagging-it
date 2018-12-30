@@ -1,8 +1,6 @@
 import * as ActionTypes from '../actions/actionTypes';
-
 import MockDate from 'mockdate';
 import configureStore from './configureStore';
-
 import {getFormattedDateTime} from '../utils/dates';
 
 describe('Store', () => {
